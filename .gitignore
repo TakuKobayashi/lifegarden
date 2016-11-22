@@ -1,0 +1,73 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+obj/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Eclipse project files
+.project
+.cproject
+.checkstyle
+.settings/
+proguard-project.txt
+
+# Android NDK Files
+*.so
+*.o
+*.o.d
+
+# Mac
+.DS_Store
+
+# Xcode
+proj.ios_mac/build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+
+#CocoaPod
+Pods/*
+
+#IDEA
+publish/*
+
+*.opensdf
+*.sdf
+
+#android studio
+proguard/
+*.iml
+*.ipr
+*.iws
+.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/libraries/
+.gradle/
+app/build/
+build/
+captures/
+
+proj.ios_mac/open2.framework/
