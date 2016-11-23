@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="2.3" package="org.cocos2dx.MyCppGame" version="1.0.0">
-    <ui-application appid="org.cocos2dx.MyCppGame" exec="hellocpp" multiple="false" nodisplay="false" taskmanage="true" type="capp">
-        <label>MyCppGame</label>
-        <icon>MyCppGame.png</icon>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="2.3" package="com.life.garden" version="1.0.0">
+    <ui-application appid="com.life.garden" exec="hellocpp" multiple="false" nodisplay="false" taskmanage="true" type="capp">
+        <label>LifeGarden</label>
+        <icon>LifeGarden.png</icon>
     </ui-application>
 </manifest>
