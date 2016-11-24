@@ -26,7 +26,7 @@ std::string Creature::getFilename(){
     return mFileName;
 }
 
-void Food::spoil(){
+void Creature::spoil(){
     if(mIsSpoiled == true) return;
     size_t f = mFileName.find("1");
     mFileName.replace(f, std::string("1").length(), "2");
@@ -34,7 +34,7 @@ void Food::spoil(){
     mIsSpoiled = true;
 }
 
-void Food::executeRandomMove(){
+void Creature::executeRandomMove(){
     //mSprite->runAction(cocos2d::MoveTo::create(10, getRandomPosition()));
     
     auto action = cocos2d::MoveTo::create(10, getRandomPosition());
