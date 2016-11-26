@@ -64,14 +64,21 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
 
+    auto bg = Sprite::create("res/bg.png");
+    bg->setScale(1.5, 1.5);
+    // position the sprite on the center of the screen
+    bg->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    this->addChild(bg, 0);
+
     // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
+    auto farm = Sprite::create("res/farm/farmB.png");
+    farm->setScale(8.0, 8.0);
 
     // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    farm->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
     // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
+    this->addChild(farm, 1);
     
     return true;
 }
