@@ -2,6 +2,7 @@ package org.cocos2dx.cpp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
@@ -225,6 +226,8 @@ public class ApplicationHelper {
 		return context.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
 	}
 
+	public static final String CHECKED_PERMISSION_KEY = "checked_permission";
+
 	public static void requestPermissions(Activity activity, int requestCode){
 		if(Build.VERSION.SDK_INT >= 23) {
 			ArrayList<String> permissions = ApplicationHelper.getSettingPermissions(activity);
@@ -236,8 +239,26 @@ public class ApplicationHelper {
 				}
 			}
 			if(isRequestPermission) {
+				SharedPreferences sp = activity.getSharedPreferences(activity.getPackageName(), Context.MODE_PRIVATE);
+				SharedPreferences.Editor editor = sp.edit();
+				editor.putBoolean(CHECKED_PERMISSION_KEY, true);
+				editor.apply();
 				activity.requestPermissions(permissions.toArray(new String[0]), requestCode);
 			}
+		}else{
+			SharedPreferences sp = activity.getSharedPreferences(activity.getPackageName(), Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = sp.edit();
+			editor.putBoolean(CHECKED_PERMISSION_KEY, true);
+			editor.apply();
+		}
+	}
+
+	public static void startSensorStreamer(Context context){
+		SharedPreferences sp = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+		if(sp.getBoolean(CHECKED_PERMISSION_KEY, false)){
+			SensorStreamer sensorStreamer = SensorStreamer.getInstance(SensorStreamer.class);
+			sensorStreamer.init(context);
+			sensorStreamer.startSensor();
 		}
 	}
 }
