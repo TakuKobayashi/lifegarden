@@ -79,6 +79,31 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(farm, 1);
+
+    
+    // シングルタッチイベントリスナーを作成する。
+    auto listener = EventListenerTouchOneByOne::create();
+    // スワロータッチモードにするとonTouchBeganメソッドはタッチイベントは他では使われない。
+    listener->setSwallowTouches(true);
+    
+    //タッチ開始
+    listener->onTouchBegan = [](Touch* touch, Event* event){
+        log("TouchBegan");
+        return true;
+    };
+    
+    //タッチ中
+    listener->onTouchMoved = [](Touch* touch, Event* event){
+        log("TouchMoved");
+    };
+    
+    //タッチ終了
+    listener->onTouchEnded = [](Touch* touch, Event* event){
+        log("TouchEnded");
+    };
+    
+    // イベントリスナーをスプライトに追加する。
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
     
     return true;
 }
