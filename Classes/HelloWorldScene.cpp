@@ -80,6 +80,30 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(farm, 1);
 
+    /*
+    // cocos2d::extension::scrollViewを作る
+    m_scrollView = cocos2d::extension::ScrollView::create(this->getContentSize());
+     
+        // scrollViewに、ノードをセット
+        m_scrollView->setContainer(m_scene);
+     
+        // ズーム用
+    　　　// デフォルトではズームの最大値と最小値が1.0倍になっているため、
+    　　　// ズームさせたい場合はそれぞれ最大値と最小値をセットしておく
+        m_scrollView->setMinScale(1.0f);
+        m_scrollView->setMaxScale(3.0f);
+     
+        // コンテンツサイズをセット
+        m_scrollView->setContentSize(Size(m_scene->getContentSize().width, m_scene->getContentSize().height));
+     
+        // スクロールの向きをセット
+        m_scrollView->setDirection(cocos2d::extension::ScrollView::Direction::BOTH);
+     
+        // スクロールイベント取得するためのDelegate
+        m_scrollView->setDelegate(this);
+     
+        this->addChild(m_scrollView);
+    */
     
     // シングルタッチイベントリスナーを作成する。
     auto listener = EventListenerTouchOneByOne::create();
