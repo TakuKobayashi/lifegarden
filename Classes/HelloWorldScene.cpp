@@ -65,14 +65,14 @@ bool HelloWorld::init()
     this->addChild(label, 1);
 
     auto bg = Sprite::create("res/bg.png");
-    bg->setScale(1.5, 1.5);
+    bg->setScale(4.5, 4.5);
     // position the sprite on the center of the screen
     bg->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(bg, 0);
 
     // add "HelloWorld" splash screen"
     auto farm = Sprite::create("res/farm/farmB.png");
-    farm->setScale(8.0, 8.0);
+    farm->setScale(6.0, 6.0);
 
     // position the sprite on the center of the screen
     farm->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
@@ -112,13 +112,52 @@ bool HelloWorld::init()
     
     //タッチ開始
     listener->onTouchBegan = [](Touch* touch, Event* event){
-        log("TouchBegan");
+        //target : ターゲットのスプライト
+        auto target = (Sprite*)event->getCurrentTarget();
+        
+        //targetBox : タッチされたスプライトの領域
+        Rect targetBox = target->getBoundingBox();
+        
+        //touchPoint : タッチされた場所
+        Point touchPoint = Vec2(touch->getLocationInView().x, touch->getLocationInView().y);
+        
+        //touchPointがtargetBoxの中に含まれているか判定
+        if (targetBox.containsPoint(touchPoint))
+        {
+            log("タグは%dです", target->getTag());
+            return true;
+        }
+        
+        // タッチ位置のログ出力
+        log("Touch at (%f, %f)", touch->getLocation().x, touch->getLocation().y);
+        
         return true;
     };
     
     //タッチ中
     listener->onTouchMoved = [](Touch* touch, Event* event){
-        log("TouchMoved");
+        
+        /* ラムダキャプチャ
+         [=] : 全てのオブジェクトのコピーがラムダ式に渡されます。
+         [&] : 全てのオブジェクトの参照がラムダ式に渡されます。
+         [obj] :objのコピーがラムダ式に渡されます。
+         [&obj]:objの参照がラムダ式に渡されます。
+         */
+        
+        // タッチ中に動いた時の処理
+        auto target = (Sprite*)event->getCurrentTarget();
+        
+        // タッチ位置が動いた時
+        // 前回とのタッチ位置との差をベクトルで取得する
+        Vec2 delta = touch->getDelta();
+        
+        // 現在のかわずたんの座標を取得する
+        Vec2 position = target->getPosition();
+        
+        // 現在座標　+ 移動量を新たな座標にする
+        Vec2 newPosition = position + delta;
+        
+        target->setPosition(newPosition);
     };
     
     //タッチ終了
